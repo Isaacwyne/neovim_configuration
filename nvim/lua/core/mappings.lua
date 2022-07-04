@@ -6,6 +6,9 @@ local keymap = vim.api.nvim_set_keymap
 -- remap space as leader key
 keymap("", "<Space>", "<Nop>", opts)
 
+----- Insert -----
+-- press jk fast to esc
+keymap("i", "jk", "<ESC>", opts)
 
 ----- Normal -----
 -- Better window navigation
@@ -27,3 +30,12 @@ keymap("n", "<S-Tab>", ":bprevious<CR>", opts)
 -- move text up and down
 keymap("n", "<A-j>", "<Esc>:m .+1<CR>==gi", opts)
 keymap("n", "<A-k>", "<Esc>:m .-2<CR>==gi", opts)
+
+----- Visual -----
+-- Stay in visual mode while indenting
+keymap("v", "<", "<gv", opts)
+keymap("v", ">", ">gv", opts)
+
+-- move text up and down
+keymap("v", "<A-j>", ":m .+1<CR>==", opts)
+keymap("v", "<A-k>", ":m .-2<CR>==", opts)
