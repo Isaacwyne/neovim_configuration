@@ -46,6 +46,7 @@ local options = {
 g.did_load_filetypes = 0
 g.do_filetype_lua = 1
 g.mapleader = " "
+g.maplocalleader = " "
 
 opt.shortmess:append "sI"                           -- disable nvim intro screen
 
