@@ -11,6 +11,11 @@ keymap("", "<Space>", "<Nop>", opts)
 keymap("i", "jk", "<ESC>", opts)
 
 ----- Normal -----
+keymap("n", "<leader>w", "<cmd>w<CR>", opts)                                -- write/save file
+keymap("n", "<leader>q", "<cmd>q<CR>", opts)                                -- quit current file
+keymap("n", "<leader>x", "<cmd>bdelete<CR>", opts)                          -- close current buffer
+keymap("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", opts)                   -- toggle NvimTree
+
 -- Better window navigation
 keymap("n", "<C-h>", "<C-w>h", opts)
 keymap("n", "<C-j>", "<C-w>j", opts)
@@ -39,3 +44,12 @@ keymap("v", ">", ">gv", opts)
 -- move text up and down
 keymap("v", "<A-j>", ":m .+1<CR>==", opts)
 keymap("v", "<A-k>", ":m .-2<CR>==", opts)
+
+-- commenting out a whole line
+-- how to create a bufferline
+-- how to create a statusline in lua
+-- numbering format toggling in lua
+-- removing the "~" neovim side
+-- changing the theme
+-- using and installing a plugin manager
+-- adding gitsigns
