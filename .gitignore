@@ -1,0 +1,3 @@
+# untracked files (directory)
+# ignore the plugin folder
+nvim/plugin/
