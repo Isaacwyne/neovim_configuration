@@ -50,7 +50,7 @@ g.maplocalleader = " "
 
 opt.shortmess:append "sI"                           -- disable nvim intro screen
 
--- colorscheme configuration
+-- colorscheme configuration (tokyonight)
 g.tokyonight_style = "night"
 g.tokyonight_italic_functions = true
 g.tokyonight_sidebars = { "qf", "vista_kind", "terminal", "packer" }
