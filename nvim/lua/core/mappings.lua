@@ -44,12 +44,3 @@ keymap("v", ">", ">gv", opts)
 -- move text up and down
 keymap("v", "<A-j>", ":m .+1<CR>==", opts)
 keymap("v", "<A-k>", ":m .-2<CR>==", opts)
-
--- commenting out a whole line
--- how to create a bufferline
--- how to create a statusline in lua
--- numbering format toggling in lua
--- removing the "~" neovim side
--- changing the theme
--- using and installing a plugin manager
--- adding gitsigns
