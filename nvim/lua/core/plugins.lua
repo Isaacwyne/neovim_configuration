@@ -76,6 +76,12 @@ return packer.startup(function(use)
   -- statusline
   use "nvim-lualine/lualine.nvim"
 
+  -- telescope
+  use {
+    "nvim-telescope/telescope.nvim",
+    requires = { {"nvim-lua/plenary.nvim"} }
+  }
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- put this at the end after all plugins
   if PACKER_BOOTSTRAP then
