@@ -12,9 +12,9 @@ keymap("i", "jk", "<ESC>", opts)
 
 ----- Normal -----
 keymap("n", "<leader>w", "<cmd>w<CR>", opts)                                -- write/save file
-keymap("n", "<leader>q", "<cmd>q<CR>", opts)                                -- quit current file
 keymap("n", "<leader>x", "<cmd>bdelete<CR>", opts)                          -- close current buffer
 keymap("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", opts)                   -- toggle NvimTree
+keymap("n", "<leader>n", "<cmd>NvimTreeFocus<CR>", opts)                    -- focus NvimTree
 
 -- Better window navigation
 keymap("n", "<C-h>", "<C-w>h", opts)

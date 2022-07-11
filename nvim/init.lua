@@ -1,3 +1,16 @@
 require"core.options"
 require"core.mappings"
 require"core.plugins"
+
+-- plugin configurations
+require"configs.autopairs"
+require"configs.nvimtree"
+require"configs.comment"
+require"configs.indentline"
+require"configs.bufferline"
+require"configs.cmp"
+require"configs.gitsigns"
+require"configs.blankline"
+require"configs.betterescape"
+require"configs.statusline"
+require"configs.colorizer"

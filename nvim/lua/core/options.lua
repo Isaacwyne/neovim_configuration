@@ -28,7 +28,7 @@ local options = {
     number = true,                                  -- show numberline
     relativenumber = true,                          -- use relative numbering
     numberwidth = 2,                                -- numberline width
-    ruler = false,                                  -- disable currentline highlighting
+    ruler = false,                                  -- disable currentline underlining
 
     signcolumn = "yes",                             -- always show the sign column
     splitbelow = true,                              -- splitting a new window below the current one
@@ -49,6 +49,21 @@ g.mapleader = " "
 g.maplocalleader = " "
 
 opt.shortmess:append "sI"                           -- disable nvim intro screen
+
+-- colorscheme configuration
+g.tokyonight_style = "night"
+g.tokyonight_italic_functions = true
+g.tokyonight_sidebars = { "qf", "vista_kind", "terminal", "packer" }
+-- change the "hint" color to "orange" color, and make the "error" color bright red
+g.tokyonight_colors = { hint = "orange", error = "#ff0000" }
+
+-- relative and absolute numbering depending on the current mode(i & n)
+vim.cmd [[
+  au InsertEnter * set norelativenumber
+  au InsertLeave * set relativenumber
+
+  colorscheme tokyonight
+]]
 
 -- go to previous/next line with h,l,left,right arrows
 -- when cursor reaches end/beginning of the line
