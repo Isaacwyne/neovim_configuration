@@ -42,6 +42,7 @@ packer.init {
 -- Install your plugins here
 return packer.startup(function(use)
   -- All plugins here
+  use 'lewis6991/impatient.nvim'                        -- improve startup time for Neovim
   use 'wbthomason/packer.nvim'                          -- Have packer manage itself
   use "max397574/better-escape.nvim"                    -- escape from insert mode without delay when typing
   use "kyazdani42/nvim-tree.lua"                        -- A file explorer tree

@@ -1,5 +1,6 @@
 local opt = vim.opt
 local g = vim.g
+local autocmd = vim.api.nvim_create_autocmd
 
 local options = {
     fileencoding = "utf-8",                         -- file content encoding for the buffer
@@ -63,6 +64,10 @@ vim.cmd [[
   au InsertLeave * set relativenumber
 
   colorscheme tokyonight
+
+  " disable language providers
+  let g:loaded_perl_provider = 0
+  let g:loaded_ruby_provider = 0
 ]]
 
 -- go to previous/next line with h,l,left,right arrows
@@ -97,3 +102,9 @@ end
 for _, plugin in pairs(default_plugins) do
     g["loaded_" .. plugin] = 1
 end
+
+-- Don't auto comment new lines
+autocmd("BufEnter", {
+    pattern = "*",
+    command = "set fo-=c fo-=r fo-=o"
+})
