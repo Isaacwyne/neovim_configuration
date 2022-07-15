@@ -10,11 +10,22 @@ keymap("", "<Space>", "<Nop>", opts)
 -- press jk fast to esc
 keymap("i", "jk", "<ESC>", opts)
 
+-- go to beginning and end of current line
+keymap("i", "<C-b>", "<Home>", opts)
+keymap("i", "<C-e>", "<End>", opts)
+
+-- navigate within insert mode
+keymap("i", "<C-h>", "Left", opts)
+keymap("i", "<C-l>", "Right", opts)
+keymap("i", "<C-j>", "Down", opts)
+keymap("i", "<C-k>", "Up", opts)
+
 ----- Normal -----
 keymap("n", "<leader>w", "<cmd>w<CR>", opts)                                -- write/save file
 keymap("n", "<leader>x", "<cmd>bdelete<CR>", opts)                          -- close current buffer
-keymap("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", opts)                   -- toggle NvimTree
-keymap("n", "<leader>n", "<cmd>NvimTreeFocus<CR>", opts)                    -- focus NvimTree
+keymap("n", "<C-n>", "<cmd>NvimTreeToggle<CR>", opts)                       -- toggle NvimTree
+keymap("n", "<leader>e", "<cmd>NvimTreeFocus<CR>", opts)                    -- focus NvimTree
+keymap("n", "ESC", "<cmd>noh<CR>", opts)                                    -- turn off highlighting (search)
 
 -- Better window navigation
 keymap("n", "<C-h>", "<C-w>h", opts)
@@ -44,3 +55,11 @@ keymap("v", ">", ">gv", opts)
 -- move text up and down
 keymap("v", "<A-j>", ":m .+1<CR>==", opts)
 keymap("v", "<A-k>", ":m .-2<CR>==", opts)
+
+-- Telescope --
+-- find
+keymap("n", "<leader>ff", "<cmd>Telescope find_files<CR>", opts)
+keymap("n", "<leader>ch", "<cmd>Telescope keymaps<CR>", opts)
+-- git
+keymap("n", "<leader>gc", "<cmd>Telescope git_commits<CR>", opts)
+keymap("n", "<leader>gs", "<cmd>Telescope git_status<CR>", opts)
