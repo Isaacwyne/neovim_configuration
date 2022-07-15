@@ -52,7 +52,7 @@ g.maplocalleader = " "
 opt.shortmess:append "sI"                           -- disable nvim intro screen
 
 -- colorscheme configuration (tokyonight)
-g.tokyonight_style = "night"
+g.tokyonight_style = "storm"
 g.tokyonight_italic_functions = true
 g.tokyonight_sidebars = { "qf", "vista_kind", "terminal", "packer" }
 -- change the "hint" color to "orange" color, and make the "error" color bright red
