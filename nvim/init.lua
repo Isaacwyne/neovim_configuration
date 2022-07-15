@@ -18,6 +18,7 @@ for _, source in ipairs {
     "plugins.configs.comment",
     "plugins.configs.gitsigns",
     "plugins.configs.indentline",
+    "plugins.lsp",
     "plugins.configs.nvimtree",
     "plugins.configs.statusline",
     "plugins.configs.telescope",
