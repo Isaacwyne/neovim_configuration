@@ -15,10 +15,10 @@ keymap("i", "<C-b>", "<Home>", opts)
 keymap("i", "<C-e>", "<End>", opts)
 
 -- navigate within insert mode
-keymap("i", "<C-h>", "Left", opts)
-keymap("i", "<C-l>", "Right", opts)
-keymap("i", "<C-j>", "Down", opts)
-keymap("i", "<C-k>", "Up", opts)
+keymap("i", "<C-h>", "<Left>", opts)
+keymap("i", "<C-l>", "<Right>", opts)
+keymap("i", "<C-j>", "<Down>", opts)
+keymap("i", "<C-k>", "<Up>", opts)
 
 ----- Normal -----
 keymap("n", "<leader>w", "<cmd>w<CR>", opts)                                -- write/save file
