@@ -54,17 +54,16 @@ return packer.startup(function(use)
 
   -- LSP
   use "neovim/nvim-lspconfig"                           -- quick start configs for neovim LSP
-  use "williamboman/nvim-lsp-installer"                 -- simple to use lang server installer
+  -- use "williamboman/nvim-lsp-installer"                 -- simple to use lang server installer
   use "tamago324/nlsp-settings.nvim"                    -- language server settings defined in json
-  use "jose-elias-alvarez/null-ls.nvim"                 -- for formatters and linters
-  use "RRethy/vim-illuminate"
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp"                                -- the completion plugin
   use "hrsh7th/cmp-buffer"                              -- buffer completions
   use "hrsh7th/cmp-path"                                -- path completions
-  use "saadparwaiz1/cmp_luasnip"                        -- snippet completions
   use "hrsh7th/cmp-nvim-lsp"
+  use "saadparwaiz1/cmp_luasnip"                        -- snippet completions
+  use "stevearc/aerial.nvim"                            -- plugin for code outline window
   
   -- Treesitter
   use {

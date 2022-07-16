@@ -1,72 +1,60 @@
 local M = {}
-
--- TODO: backfill this to template
-M.setup = function()
-  local signs = {
-    { name = "DiagnosticSignError", text = "" },
-    { name = "DiagnosticSignWarn", text = "" },
-    { name = "DiagnosticSignHint", text = "" },
-    { name = "DiagnosticSignInfo", text = "" },
-  }
-
-  for _, sign in ipairs(signs) do
-    vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
+local function lsp_highlight_document(client)
+  if client.resolved_capabilities.document_highlight then
+    vim.api.nvim_create_augroup("lsp_document_highlight", { clear = true })
+    vim.api.nvim_create_autocmd("CursorHold", {
+      group = "lsp_document_highlight",
+      pattern = "<buffer>",
+      callback = vim.lsp.buf.document_highlight,
+    })
+    vim.api.nvim_create_autocmd("CursorMoved", {
+      group = "lsp_document_highlight",
+      pattern = "<buffer>",
+      callback = vim.lsp.buf.clear_references,
+    })
   end
-
-  local config = {
-    virtual_text = false,                               -- disable virtual text
-    --show signs
-    signs = {
-      active = signs,
-    },
-    update_in_insert = true,
-    underline = true,
-    severity_sort = true,
-    float = {
-      focusable = false,
-      style = "minimal",
-      border = "rounded",
-      source = "always",
-      header = "",
-      prefix = "",
-    },
-  }
-
-  vim.diagnostic.config(config)
-
-  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-    border = "rounded",
-  })
-
-  vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-    border = "rounded",
-  })
 end
 
-local function lsp_highlight_document(client)
-  -- set autocommands conditional on server_capabilities
-  local present, illuminate = pcall(require, "illuminate")
-  if not present then
-    vim.api.nvim_err_writeln("illuminate not found!")
+local function conditional_func(func, condition, ...)
+  if (condition == nil and true or condition) and type(func) == "function" then
+    return func(...)
   end
-  illuminate.on_attach(client)
+end
+
+local function lsp_keymaps()
+  vim.keymap.set("n", "gd", vim.lsp.buf.definition, {buffer=0})
+  vim.keymap.set("n", "K", vim.lsp.buf.hover, {buffer=0})
+  vim.keymap.set("n", "gD", vim.lsp.buf.declaration, {buffer=0})
+  vim.keymap.set("n", "gT", vim.lsp.buf.type_definition, {buffer=0})
+  vim.keymap.set("n", "gi", vim.lsp.buf.implementation, {buffer=0})
+  vim.keymap.set("n", "<leader>dn", vim.diagnostic.goto_next, {buffer=0})
+  vim.keymap.set("n", "<leader>dp", vim.diagnostic.goto_prev, {buffer=0})
+  vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, {buffer=0})
+  vim.keymap.set("n", "<leader>dl", "<cmd>Telescope diagnostics<cr>", {buffer=0})
 end
 
 M.on_attach = function(client, bufnr)
-  if client.name == "tsserver" then
-    client.resolved_capabilities.document_formatting = false
-  end
-  -- lsp_keymaps(bufnr)
+  vim.api.nvim_buf_create_user_command(bufnr, "Format", function()
+    vim.lsp.buf.formatting()
+  end,{ desc = "Format file with LSP" })
+
+  local aerial_avail, aerial = pcall(require, "aerial")
+  conditional_func(aerial.on_attach, aerial_avail, client, bufnr)
+  lsp_keymaps()
   lsp_highlight_document(client)
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-
-local present, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-if not present then
-  vim.api.nvim_err_writeln("cmp_nvim_lsp not found")
-end
-
-M.capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
+capabilities.textDocument.completion.completionItem.documentationFormat = { "markdown", "plaintext" }
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+capabilities.textDocument.completion.completionItem.preselectSupport = true
+capabilities.textDocument.completion.completionItem.insertReplaceSupport = true
+capabilities.textDocument.completion.completionItem.labelDetailsSupport = true
+capabilities.textDocument.completion.completionItem.deprecatedSupport = true
+capabilities.textDocument.completion.completionItem.commitCharactersSupport = true
+capabilities.textDocument.completion.completionItem.tagSupport = { valueSet = { 1 } }
+capabilities.textDocument.completion.completionItem.resolveSupport = {
+  properties = { "documentation", "detail", "additionalTextEdits" },
+}
 
 return M
