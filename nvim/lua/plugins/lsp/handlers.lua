@@ -15,12 +15,6 @@ local function lsp_highlight_document(client)
   end
 end
 
-local function conditional_func(func, condition, ...)
-  if (condition == nil and true or condition) and type(func) == "function" then
-    return func(...)
-  end
-end
-
 local function lsp_keymaps()
   vim.keymap.set("n", "gd", vim.lsp.buf.definition, {buffer=0})
   vim.keymap.set("n", "K", vim.lsp.buf.hover, {buffer=0})
@@ -38,8 +32,6 @@ M.on_attach = function(client, bufnr)
     vim.lsp.buf.formatting()
   end,{ desc = "Format file with LSP" })
 
-  local aerial_avail, aerial = pcall(require, "aerial")
-  conditional_func(aerial.on_attach, aerial_avail, client, bufnr)
   lsp_keymaps()
   lsp_highlight_document(client)
 end
