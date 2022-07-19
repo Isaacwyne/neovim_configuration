@@ -21,11 +21,15 @@ keymap("i", "<C-j>", "<Down>", opts)
 keymap("i", "<C-k>", "<Up>", opts)
 
 ----- Normal -----
-keymap("n", "<leader>w", "<cmd>w<CR>", opts)                                -- write/save file
-keymap("n", "<leader>x", "<cmd>bdelete<CR>", opts)                          -- close current buffer
-keymap("n", "<C-n>", "<cmd>NvimTreeToggle<CR>", opts)                       -- toggle NvimTree
-keymap("n", "<leader>e", "<cmd>NvimTreeFocus<CR>", opts)                    -- focus NvimTree
-keymap("n", "ESC", "<cmd>noh<CR>", opts)                                    -- turn off highlighting (search)
+keymap("n", "<leader>w", "<cmd>w<CR>", opts)                                    -- write/save file
+keymap("n", "<C-w>", "<cmd>w!<CR>", opts)                                       -- force write/save file
+keymap("n", "<leader>q", "<cmd>q<cr>", opts)                                    -- quit
+keymap("n", "<C-q>", "<cmd>q!<cr>", opts)                                       -- force quit
+keymap("n", "<leader>x", "<cmd>bdelete<CR>", opts)                              -- close current buffer
+keymap("n", "<C-n>", "<cmd>NvimTreeToggle<CR>", opts)                           -- toggle NvimTree
+keymap("n", "<leader>e", "<cmd>NvimTreeFocus<CR>", opts)                        -- focus NvimTree
+keymap("n", "<ESC>", "<cmd>nohlsearch<CR>", opts)                               -- turn off highlighting (search)
+keymap("n", "<leader>fn", "<cmd>enew<cr>", opts)                                -- create new file
 
 -- Better window navigation
 keymap("n", "<C-h>", "<C-w>h", opts)
@@ -40,8 +44,10 @@ keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
 keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 
 -- buffer navigation
-keymap("n", "<Tab>", ":bnext<CR>", opts)
-keymap("n", "<S-Tab>", ":bprevious<CR>", opts)
+keymap("n", "<S-l>", "<cmd>BufferLineCycleNext<cr>", opts)
+keymap("n", "<S-h>", "<cmd>BufferLineCyclePrev<cr>", opts)
+-- keymap("n", "<S-l>", "<cmd>bnext<cr>", opts)
+-- keymap("n", "<S-h>", "<cmd>bprevious<cr>", opts)
 
 -- move text up and down
 keymap("n", "<A-j>", "<Esc>:m .+1<CR>==gi", opts)
