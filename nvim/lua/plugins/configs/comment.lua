@@ -1,5 +1,7 @@
 local present, comment = pcall(require, "Comment")
-if not present then return end
+if not present then 
+  return
+end
 
 comment.setup {
     pre_hook = function(ctx)
