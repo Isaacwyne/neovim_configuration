@@ -4,7 +4,6 @@ local autocmd = vim.api.nvim_create_autocmd
 
 local options = {
     fileencoding = "utf-8",                         -- file content encoding for the buffer
-    
     laststatus = 3,                                 -- global statusline
     showmode = false,                               -- disable showing modes in commandline
     lazyredraw = true,                              -- lazily redraw the screen
@@ -24,6 +23,7 @@ local options = {
     smartcase = true,                               -- case sensitive searching
     mouse = "a",                                    -- enable mouse support
     pumheight = 10,                                 -- height of the popup menu
+    wrap = false,                                   -- turn off text wrap
 
     -- Numbers
     number = true,                                  -- show numberline
@@ -38,7 +38,6 @@ local options = {
     termguicolors = true,                           -- enable 24-bit RGB color in the TUI
     timeoutlen = 400,                               -- length of time to wait for a mapped sequence
     undofile = true,                                -- enable persistent undo
-    
     -- interval for writing swap file to disk, also used by gitsigns
     updatetime = 250,
 }

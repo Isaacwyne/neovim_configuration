@@ -7,7 +7,6 @@ for _, source in ipairs {
     "core.options",
     "core.mappings",
     "core.plugins",
-    
     -- plugin configurations
     "plugins.configs.autopairs",
     "plugins.configs.better_escape",
